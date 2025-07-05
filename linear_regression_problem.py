@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import pickle
+
 # %matplotlib inline
 
 from sklearn.datasets import fetch_california_housing
@@ -31,6 +33,8 @@ scaler = StandardScaler()
 X_train = scaler.fit_transform(X_train)
 X_test = scaler.fit_transform(X_test)
 
+pickle.dump(scaler, open('scaler.pkl', 'wb'))
+
 # Model Training
 # ----------------------------------------
 from sklearn.linear_model import LinearRegression
@@ -46,7 +50,6 @@ from sklearn.metrics import mean_squared_error, r2_score
 
 
 # pickle
-import pickle
 pickle.dump(regression, open('regmodel.pkl', 'wb'))
 # pickle_model = pickle.load(open('regmodel.pkl', 'rb'))
 # pickle_pred = pickle_model.predict(X_test)
